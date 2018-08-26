@@ -132,30 +132,33 @@
                             <div class="col-sm-12">
                                 <h5 class="info-text"> На какой программе будете учиться? </h5>
                             </div>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <label>Выберете программу</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
+                            <select name="Program" title="Single Select">
+                                @*class="selectpicker" data-size="7" data-style="btn btn-primary btn-round"*@
+                                @{
+                                    foreach (var opt in (ViewData["Programs"] as IEnumerable<KeyValuePair<int, string>>))
+                                    {
+                                        <option value="@opt.Key"> @opt.Value </option>
+                                    }
+                                }
+                            </select>
                             <div class="col-sm-10">
                                 <h6 class="info-text"> Разные подгруппы проходят практику в разное время утро\день\вечер </h6>
                                 <div class="form-group">
                                     <label>Подгруппа</label>
                                     <div class="checkbox">
-                                        <input id="checkbox6" type="checkbox" checked="">
+                                        <input id="checkbox6" type="checkbox" checked="" name="ProgramPart" value="1">
                                         <label for="checkbox6">
                                             Утро
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input id="checkbox6" type="checkbox" checked="">
+                                        <input id="checkbox6" type="checkbox" checked="" name="ProgramPart" value="2">
                                         <label for="checkbox6">
                                             День
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input id="checkbox6" type="checkbox" checked="">
+                                        <input id="checkbox6" type="checkbox" checked="" name="ProgramPart" value="3">
                                         <label for="checkbox6">
                                             Вечер
                                         </label>
