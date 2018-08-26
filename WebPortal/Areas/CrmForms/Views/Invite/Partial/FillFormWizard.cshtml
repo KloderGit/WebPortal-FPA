@@ -1,0 +1,214 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!--      Wizard container        -->
+<div class="wizard-container">
+    <div class="card card-wizard" data-color="primary" id="wizardProfile">
+        <form id="fill_student" asp-action="InviteForm" asp-controller="Invite" asp-antiforgery="true" method="post">
+            <input name="id" value="565656" hidden>
+            <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+            <div class="card-header text-center">
+                <h3 class="card-title">
+                    Заполнение профиля
+                </h3>
+                <h5 class="description">Внимательно заполните информацию о себе. Эта информация пригодится на экзаменах.</h5>
+                <div class="wizard-navigation">
+                    <ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#about" data-toggle="tab" role="tab" aria-controls="about" aria-selected="true">
+                                <i class="nc-icon nc-touch-id"></i> Аккаунт
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#account" data-toggle="tab" role="tab" aria-controls="account" aria-selected="true">
+                                <i class="nc-icon nc-pin-3"></i> Контакты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#address" data-toggle="tab" role="tab" aria-controls="address" aria-selected="true">
+                                <i class="nc-icon nc-ruler-pencil"></i> О программе
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="about">
+                        <h5 class="info-text"> Эти данные для выпускных документов и идентификации </h5>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-4">
+                                <div class="picture-container">
+                                    <div class="picture">
+                                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                        <input type="file" id="wizard-picture">
+                                    </div>
+                                    <h6 class="description">Выбрать изображение</h6>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="ФИО (required)" name="Name" value="@Model.Name" />
+                                </div>
+                            </div>
+                            <div class="col-lg-10 mt-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nc-icon nc-send"></i></span>
+                                    </div>
+                                    <input type="text" placeholder="Телефон (required)" class="form-control" name="Phone" value="@Model.Phone"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 mt-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nc-icon nc-send"></i></span>
+                                    </div>
+                                    <input type="email" placeholder="Email (required)" class="form-control" name="Email" value="@Model.Email"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="account">
+                        <h5 class="info-text"> Информация для нас и работодателей. </h5>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                            </div>
+                                            <input type="date" class="form-control" placeholder="Дата рождения" name="Birthday">
+                                        </div>
+                                        <div class="form-group select-wizard">
+                                            <label>Как узанли о курсах</label>
+                                            <select name="WhereKnown"  title="Single Select">  @*class="selectpicker" data-size="7" data-style="btn btn-primary btn-round"*@
+                                                @{
+                                                    foreach (var opt in (ViewData["WhereKmown"] as IEnumerable<KeyValuePair<int, string>>))
+                                                    {
+                                                        <option value="@opt.Key"> @opt.Value </option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Город" name="City">
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Метро" name="Subway">
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Опыт занятий спортом" name="Expirience">
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Образование" name="Education">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="address">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12">
+                                <h5 class="info-text"> На какой программе будете учиться? </h5>
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <label>Выберете программу</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <h6 class="info-text"> Разные подгруппы проходят практику в разное время утро\день\вечер </h6>
+                                <div class="form-group">
+                                    <label>Подгруппа</label>
+                                    <div class="checkbox">
+                                        <input id="checkbox6" type="checkbox" checked="">
+                                        <label for="checkbox6">
+                                            Утро
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input id="checkbox6" type="checkbox" checked="">
+                                        <label for="checkbox6">
+                                            День
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input id="checkbox6" type="checkbox" checked="">
+                                        <label for="checkbox6">
+                                            Вечер
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="pull-right">
+                    <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
+                    <input type='submit' class='btn btn-finish btn-fill btn-rose btn-wd' name='finish' value='Finish' />
+                </div>
+                <div class="pull-left">
+                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- wizard container -->
+
+<script>
+    $(document).ready(function() {
+      // Initialise the wizard
+      demo.initWizard();
+      setTimeout(function() {
+        $('.card.card-wizard').addClass('active');
+      }, 600);
+    });
+
+    $('#fill_student').on('submit', function (event) {
+        event.preventDefault(); // or return false, your choice
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'post',
+            data: $(this).serialize(),
+            success: function (data, textStatus, jqXHR) {
+                // if success, HTML response is expected, so replace current
+                if (textStatus === 'success') {
+                    console.log('form submitted.');
+                    demo.showSwal('success-message');
+                }
+            }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status == 0 || jqXHR == 302) {
+                alert('Your session has ended due to inactivity after 10 minutes.\nPlease refresh this page, or close this window and log back in to system.');
+            } else {
+                alert('Unknown error returned while saving' + (typeof errorThrown == 'string' && errorThrown.trim().length > 0 ? ':\n' + errorThrown : ''));
+            }
+        });
+    });
+</script>

@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="sidebar" data-color="brown" data-active-color="danger">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+    <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                @*<img src="~/assets/img/logo-small.png">*@
+            </div>
+        </a>
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+            FPA
+            <!-- <div class="logo-image-big">
+              <img src="~/assets/img/logo-big.png">
+            </div> -->
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <div class="user">
+            <div class="photo">
+                <img src="~/assets/img/faces/ayo-ogunseinde-2.jpg" />
+            </div>
+            <div class="info">
+                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                    <span>
+                        Планшет
+                        <b class="caret"></b>
+                    </span>
+                </a>
+                <div class="clearfix"></div>
+                @*<div class="collapse" id="collapseExample">
+                    <ul class="nav">
+                        <li>
+                            <a href="#">
+                                <span class="sidebar-mini-icon">MP</span>
+                                <span class="sidebar-normal">My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="sidebar-mini-icon">EP</span>
+                                <span class="sidebar-normal">Edit Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="sidebar-mini-icon">S</span>
+                                <span class="sidebar-normal">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+        <ul class="nav">
+            @*<li>
+                <a href="../examples/dashboard.html">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>*@
+            <li class="active">
+                <a data-toggle="collapse" href="#pagesExamples">
+                    <i class="nc-icon nc-book-bookmark"></i>
+                    <p>
+                        Формы
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse " id="pagesExamples">
+                    <ul class="nav">
+                        <li>
+                            <a asp-action="Index" asp-controller="Invite" asp-route-area="CrmForms">
+                                <span class="sidebar-mini-icon">T</span>
+                                <span class="sidebar-normal"> Заявки </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="InviteForm" asp-controller="Invite" asp-route-area="CrmForms">
+                                <span class="sidebar-mini-icon">L</span>
+                                <span class="sidebar-normal"> Добавление </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

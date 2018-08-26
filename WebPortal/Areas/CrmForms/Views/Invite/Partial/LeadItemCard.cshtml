@@ -1,0 +1,29 @@
+﻿@using WebPortal.Areas.CrmForms.Models
+@model LeadViewModel
+
+<div class="card card-stats">
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-single-02 text-warning"></i>
+            </div>
+        </div>
+        <div class="col-7 col-md-8">
+            <div class="numbers">
+                <p class="card-category">@Model.Name</p>
+                <p class="card-title">@Model.Phone<p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="card-footer ">
+        <hr>
+        <div class="stats">
+            <form>
+                <input name="id" value="@Model.Id" hidden />
+                <button asp-action="InviteForm" asp-controller="Invite" type="submit" class="btn btn-primary btn-fill btn-wd">Заполнить форму</button>
+            </form>
+        </div>
+    </div>
+</div>

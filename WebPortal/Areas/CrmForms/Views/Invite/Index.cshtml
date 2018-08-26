@@ -1,1 +1,18 @@
-﻿<h2>HomeController из области Store</h2>
+﻿@using WebPortal.Areas.CrmForms.Models
+@model IEnumerable<LeadViewModel>
+
+<h2>Предварительные заявки</h2>
+
+<div class="row">
+
+    @{
+        foreach (var item in Model)
+        {
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            @Html.Partial("Partial/LeadItemCard", item);
+        </div>
+        }
+    }
+
+
+</div>
