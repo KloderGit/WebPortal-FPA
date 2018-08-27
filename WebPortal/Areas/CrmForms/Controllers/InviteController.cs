@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using WebPortal.Areas.CrmForms.Models;
+using WebPortalBuisenessLogic;
 
 namespace WebPortal.Areas.CrmForms.Controllers
 {
     [Area("CrmForms")]
     public class InviteController : Controller
     {
+        ILogger logger;
+        BusinessLogic logic;
+
+        public InviteController(ILogger logger, BusinessLogic logic)
+        {
+            this.logger = logger;
+            this.logic = logic;
+        }
+
         Dictionary<int, string> where = new Dictionary<int, string> {
                 { 123, "Из интернета" },
                 { 345, "Из рекламы" },
@@ -22,16 +33,14 @@ namespace WebPortal.Areas.CrmForms.Controllers
                 { 555555555, "Персональный тренер" },
             };
 
-        IEnumerable<LeadViewModel> leads = new List<LeadViewModel>() {
-                new LeadViewModel{ Id = 234, Name = "Оксана", Phone = "89432343456" },
-                new LeadViewModel{ Id = 675, Name = "Стуков Сергей", Phone = "89553456544" },
-                new LeadViewModel{ Id = 3456, Name = "Роман", Phone = "896547854" },
-                new LeadViewModel{ Id = 1923, Name = "Иджян Илья", Phone = "896965556655" }
-            };
 
         public IActionResult Index()
         {
-            return View(leads);
+            var leads = logic.GetPreparedLeads().Result;
+
+            var leadsViewModels = leads.Select( it => new LeadViewModel { LeadId = it.Id, ContactId = it.MainContact.Id, Name = it.MainContact.Name, Phone = it.MainContact.Fields.FirstOrDefault(x=>x.Id== 54667).Values.FirstOrDefault().Value } );
+
+            return View(leadsViewModels);
         }
 
         [HttpGet]
@@ -40,7 +49,11 @@ namespace WebPortal.Areas.CrmForms.Controllers
             ViewData["WhereKmown"] = where;
             ViewData["Programs"] = progs;
 
-            var item = leads.FirstOrDefault(i => i.Id == id);
+            var leads = logic.GetPreparedLeads().Result;
+
+            var leadsViewModels = leads.Select(it => new LeadViewModel { LeadId = it.Id, ContactId = it.MainContact.Id, Name = it.MainContact.Name, Phone = it.MainContact.Fields.FirstOrDefault(x => x.Id == 54667).Values.FirstOrDefault().Value });
+
+            var item = leadsViewModels.FirstOrDefault(i=>i.LeadId == id);
 
             return View(item);
         }

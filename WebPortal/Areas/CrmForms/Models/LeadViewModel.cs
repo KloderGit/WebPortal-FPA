@@ -7,13 +7,14 @@ namespace WebPortal.Areas.CrmForms.Models
 {
     public class LeadViewModel
     {
-        public int Id { get; set; }
+        public int LeadId { get; set; }
+        public int ContactId { get; set; }
         public string Name { get; set; }
 
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public string Birthday { get; set; }
         public int WhereKnown { get; set; }
 
         public string City { get; set; }
