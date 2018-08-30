@@ -1,7 +1,7 @@
 ﻿<!--      Wizard container        -->
 <div class="wizard-container">
     <div class="card card-wizard" data-color="primary" id="wizardProfile">
-        <form id="fill_student" asp-action="InviteForm" asp-controller="Invite" asp-antiforgery="true" method="post">
+        <form id="fill_student" asp-action="@ViewData["Action"]" asp-controller="@ViewData["Controller"]" asp-antiforgery="true" method="post">
 
             <input name="LeadId" value="@Model.LeadId" hidden>
             <input name="ContactId" value="@Model.ContactId" hidden>
@@ -37,7 +37,7 @@
                     <div class="tab-pane show active" id="about">
                         <h5 class="info-text"> Эти данные для выпускных документов и идентификации </h5>
                         <div class="row justify-content-center">
-                            <div class="col-lg-4 col-xs-12">
+                            @*<div class="col-lg-4 col-xs-12">
                                 <div class="picture-container">
                                     <div class="picture">
                                         <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
@@ -45,58 +45,46 @@
                                     </div>
                                     <h6 class="description">Выбрать изображение</h6>
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="col-lg-6 col-xs-12">
                                 <label>Фамилия Имя Отчество</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="ФИО (required)" name="Name" value="@Model.Name" />
+                                    <input type="text" class="form-control" placeholder="ФИО" name="Name" value="@Model.Name" />
+                                </div>
+                                <label>Дата рождения</label>
+                                <div class="input-group col-sm-6 col-xs-12">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nc-icon nc-calendar-60"></i></span>
+                                    </div>
+                                    <input type="date" class="form-control" placeholder="" name="Birthday">
                                 </div>
                                 <label>Телефон</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                                     </div>
-                                    <input type="text" placeholder="Телефон (required)" class="form-control" name="Phone" value="@Model.Phone" />
+                                    <input type="text" placeholder="Телефон" class="form-control" name="Phone" value="@Model.Phone" />
                                 </div>
                                 <label>Email</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
                                     </div>
-                                    <input type="email" placeholder="Email (required)" class="form-control" name="Email" value="@Model.Email" />
+                                    <input type="email" placeholder="Email" class="form-control" name="Email" value="@Model.Email" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="account">
-                        <h5 class="info-text"> Информация для нас и работодателей. </h5>
+                        <h5 class="info-text"> Информация для работодателей. </h5>
                         <div class="row justify-content-center">
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="nc-icon nc-calendar-60"></i></span>
-                                            </div>
-                                            <input type="text" class="form-control datetimepicker" placeholder="Дата рождения" name="Birthday">
-                                        </div>
-                                        <div class="form-group select-wizard">
-                                            <label>Как узнали о курсах</label>
-                                            <select name="WhereKnown" class="form-control" title="Single Select">
-                                                @*class="selectpicker" data-size="7" data-style="btn btn-primary btn-round"*@
-                                                @{
-                                                    foreach (var opt in (ViewData["WhereKmown"] as IEnumerable<KeyValuePair<int, string>>))
-                                                    {
-                                                        <option value="@opt.Key"> @opt.Value </option>
-                                                    }
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
+
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="nc-icon nc-pin-3"></i></span>
@@ -109,6 +97,21 @@
                                             </div>
                                             <input type="text" class="form-control" placeholder="Метро" name="Subway">
                                         </div>
+
+                                        @*<div class="form-group select-wizard">
+            <label>Как узнали о курсах</label>
+            <select name="WhereKnown" class="form-control" title="Single Select">
+                @{
+                    foreach (var opt in (ViewData["WhereKmown"] as IEnumerable<KeyValuePair<int, string>>))
+                    {
+                        <option value="@opt.Key"> @opt.Value </option>
+                    }
+                }
+            </select>
+        </div>*@
+                                    </div>
+                                    <div class="col-sm-6">
+
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="nc-icon nc-user-run"></i></span>
@@ -134,8 +137,8 @@
 
                             <div class="col-sm-10">
                                 <select name="Program" title="Single Select" class="form-control">
-                                    @*class="selectpicker" data-size="7" data-style="btn btn-primary btn-round"*@
                                     @{
+                                        <option value="0">Не выбрано</option>
                                         foreach (var opt in (ViewData["Programs"] as IEnumerable<KeyValuePair<int, string>>))
                                         {
                                             <option value="@opt.Key"> @opt.Value </option>
@@ -150,19 +153,19 @@
                                 <div class="form-group">
                                     <div class="form-check-radio form-check-inline">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="ProgramPart" id="exampleRadios12" value="1" checked=""> Утро
+                                            <input class="form-check-input" type="radio" name="ProgramPart" id="exampleRadios12" value="1" > Утро
                                             <span class="form-check-sign"></span>
                                         </label>
                                     </div>
                                     <div class="form-check-radio">
                                         <label class="form-check-label form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ProgramPart" id="exampleRadios12" value="2" checked=""> День
+                                            <input class="form-check-input" type="radio" name="ProgramPart" id="exampleRadios12" value="2" > День
                                             <span class="form-check-sign"></span>
                                         </label>
                                     </div>
                                     <div class="form-check-radio">
                                         <label class="form-check-label form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ProgramPart" id="exampleRadios12" value="3" checked=""> Вечер
+                                            <input class="form-check-input" type="radio" name="ProgramPart" id="exampleRadios12" value="3" > Вечер
                                             <span class="form-check-sign"></span>
                                         </label>
                                     </div>

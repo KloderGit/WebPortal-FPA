@@ -2,11 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>f50366e8-290c-42cd-add1-b219709f76cc</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="Areas\CrmForms\Views\Invite\Index.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
@@ -21,7 +18,6 @@
 
   <ItemGroup>
     <None Include="Areas\CrmForms\Views\Invite\InviteForm.cshtml" />
-    <None Include="Areas\CrmForms\Views\Invite\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

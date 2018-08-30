@@ -14,7 +14,7 @@ namespace WebPortal.Areas.CrmForms.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         public int WhereKnown { get; set; }
 
         public string City { get; set; }
