@@ -218,14 +218,30 @@
                 // if success, HTML response is expected, so replace current
                 if (textStatus === 'success') {
                     console.log('form submitted.');
-                    demo.showSwal('success-message');
-                }
+                    //demo.showSwal('success-message');
+                };
+
+                swal(
+                    'Готово!',
+                    'Данные доставлены !',
+                    'success'
+                );
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             if (jqXHR.status == 0 || jqXHR == 302) {
-                alert('Your session has ended due to inactivity after 10 minutes.\nPlease refresh this page, or close this window and log back in to system.');
+                swal({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Истекло время действия сессии.',
+                    footer: '<a href>Why do I have this issue?</a>'
+                });
             } else {
-                alert('Unknown error returned while saving' + (typeof errorThrown == 'string' && errorThrown.trim().length > 0 ? ':\n' + errorThrown : ''));
+                swal({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Получен ответ ' + (typeof errorThrown == 'string' && errorThrown.trim().length > 0 ? ':\n' + errorThrown : ''),
+                    footer: '<a href>Why do I have this issue?</a>'
+                });
             }
         });
     });

@@ -92,7 +92,9 @@ namespace WebPortal.Areas.CrmForms.Controllers
 
             var result = logic.AddFromForm(modelDTo);
 
-            return Ok();
+            if (result.Result) return Ok();
+
+            return BadRequest();
         }
 
         [HttpPost]
