@@ -1,0 +1,17 @@
+﻿@using WebPortal.Areas.MailManage.Controllers
+@model IEnumerable<MailTemplate>
+
+<h2>Предварительные заявки</h2>
+
+<div class="row">
+
+    @{
+        foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                @Html.Partial("Partial/MailItemCard", item)
+            </div>
+        }
+    }
+
+</div>
