@@ -37,7 +37,7 @@ namespace WebPortal.Areas.CrmForms.Controllers
         {
             var leads = await logic.GetPreparedLeads();
 
-            var leadsViewModels = leads.Select( it => new LeadViewModel { LeadId = it.LeadId, ContactId = it.ContactId, Name = it.Name, Phone = it.Phone, Email = it.Email  } );
+            var leadsViewModels = leads?.Select( it => new LeadViewModel { LeadId = it.LeadId, ContactId = it.ContactId, Name = it.Name, Phone = it.Phone, Email = it.Email  } );
 
             return View(leadsViewModels);
         }
