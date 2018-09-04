@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Mapster;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using WebPortal.Tools.Mapster;
 using WebPortalBuisenessLogic;
 
 namespace WebPortal
@@ -27,7 +29,13 @@ namespace WebPortal
                     .CreateLogger();
             });
 
-            services.AddTransient<BusinessLogic>();
+            services.AddScoped<BusinessLogic>();
+
+            services.AddScoped<TypeAdapterConfig>( mapper => {
+                var map = new TypeAdapterConfig();
+                var reg = new RegMapster(map);
+                return map;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

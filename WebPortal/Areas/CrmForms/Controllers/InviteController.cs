@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using WebPortal.Areas.CrmForms.Models;
@@ -15,12 +16,13 @@ namespace WebPortal.Areas.CrmForms.Controllers
     {
         ILogger logger;
         BusinessLogic logic;
+        TypeAdapterConfig mapper;
 
-        public InviteController(ILogger logger, BusinessLogic logic)
+        public InviteController(ILogger logger, BusinessLogic logic, TypeAdapterConfig mapping)
         {
             this.logger = logger;
             this.logic = logic;
-
+            this.mapper = mapping;
         }
 
         Dictionary<int, string> progs = new Dictionary<int, string> {

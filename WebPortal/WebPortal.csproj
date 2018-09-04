@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
     <PackageReference Include="Serilog" Version="2.7.1" />
@@ -21,9 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\MailManage\Data\" />
-    <Folder Include="Areas\MailManage\Models\" />
-    <Folder Include="Models\Crm\" />
+    <Folder Include="Infrastructure\" />
     <Folder Include="Views\Shared\CommonParts\" />
   </ItemGroup>
 
@@ -32,6 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\Common\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Common\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\MailManage\Views\_ViewImports.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

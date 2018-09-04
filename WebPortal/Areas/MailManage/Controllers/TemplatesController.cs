@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using WebPortal.Areas.MailManage.Models;
+using WebPortal.Areas.MailManage.Models.ViewModels;
 using WebPortalBuisenessLogic;
 
 namespace WebPortal.Areas.MailManage.Controllers
@@ -15,6 +18,7 @@ namespace WebPortal.Areas.MailManage.Controllers
     {
         ILogger logger;
         BusinessLogic logic;
+        TypeAdapterConfig mapper;
 
         List<MailTemplate> mails = new List<MailTemplate> {
             new MailTemplate{ Id = 11, Subject = "Первое письмо", Body = "Тело первого письма." },
@@ -25,29 +29,38 @@ namespace WebPortal.Areas.MailManage.Controllers
         };
 
 
-        public TemplatesController(ILogger logger, BusinessLogic logic)
+        public TemplatesController(ILogger logger, BusinessLogic logic, TypeAdapterConfig mapping)
         {
             this.logger = logger;
             this.logic = logic;
+            this.mapper = mapping;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View(mails);
         }
 
-        [HttpGet]
-        public IActionResult Template()
-        {
-            return View();
-        }
-    }
 
-    public class MailTemplate
-    {
-        public int Id { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
+        [HttpGet]
+        public IActionResult AddTemplate(int id)
+        {
+            var item = mails.FirstOrDefault(i => i.Id == id);
+            var model = new TemplateViewModel {
+                Id = item.Id,
+                Subject = item.Subject,
+                Body = item.Body
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddTemplate(TemplateViewModel model)
+        {
+
+
+            return RedirectToRoute("Index");
+        }
     }
 }

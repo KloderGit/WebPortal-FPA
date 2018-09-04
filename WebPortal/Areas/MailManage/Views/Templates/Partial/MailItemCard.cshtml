@@ -1,4 +1,4 @@
-﻿@using WebPortal.Areas.MailManage.Controllers
+﻿@using WebPortal.Areas.MailManage.Models
 @model MailTemplate
 
 <div class="card card-stats">
@@ -22,7 +22,7 @@
         <div class="stats">
             <form>
                 <input name="id" value="@Model.Id" hidden />
-                <button asp-action="InviteForm" asp-controller="Invite" type="submit" class="btn btn-primary btn-fill btn-wd">Заполнить форму</button>
+                <button asp-action="AddTemplate" asp-controller="Templates" type="submit" class="btn btn-primary btn-fill btn-wd">Заполнить форму</button>
             </form>
         </div>
     </div>
