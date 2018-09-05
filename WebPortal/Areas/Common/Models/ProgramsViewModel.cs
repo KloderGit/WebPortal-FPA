@@ -9,7 +9,7 @@ namespace WebPortal.Areas.Common.Models
     {
         public string Guid { get; set; }
         public string Title { get; set; }
-        public string Variant { get; set; }
+        public string Type { get; set; }
         public string Form { get; set; }
         public string Department { get; set; }
         public IEnumerable<string> Subjects { get; set; }

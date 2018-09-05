@@ -225,7 +225,11 @@
                     'Готово!',
                     'Данные доставлены !',
                     'success'
-                );
+                ).then((result) => {
+                    window.location.href = "Index"
+                });
+
+
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             if (jqXHR.status == 0 || jqXHR == 302) {

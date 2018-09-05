@@ -35,9 +35,9 @@ namespace WebPortal.Areas.Common.Controllers
 
         public ActionResult Programs()
         {
-            //var programs = logic.GetDataBasePrograms();
+            var programs = logic.GetDataBasePrograms();
 
-            return View();
+            return View(programs.Adapt<IEnumerable<ProgramsViewModel>>(mapper));
         }
 
     }

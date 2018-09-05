@@ -1,0 +1,38 @@
+﻿@using WebPortal.Areas.Common.Models
+@model IEnumerable<ProgramsViewModel>
+
+    <div class="nav-tabs-navigation">
+        <div class="nav-tabs-wrapper">
+            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="nav-item active">
+                    <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-expanded="true">Home</a>
+                </li>
+                @{
+                    foreach (var item in Model.GroupBy(var => var.Type))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#@item.Key.GetHashCode()" role="tab" aria-expanded="true">@item.Key</a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+            asdasdasd
+        </div>
+        @{
+            foreach (var item in Model.GroupBy(var => var.Type))
+            {
+                <div class="tab-pane" style="column-count: 2" id="@item.Key.GetHashCode()" role="tabpanel" aria-expanded="true">
+                    @foreach (var prog in item.OrderBy(x=>x.Title))
+                    {
+                        <p>@prog.Title</p>
+                    }
+                </div>
+            }
+        }
+
+    </div>

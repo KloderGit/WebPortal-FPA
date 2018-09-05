@@ -1,0 +1,32 @@
+﻿@using WebPortal.Areas.Common.Models
+@model IEnumerable<ProgramsViewModel>
+
+<div class="row">
+        <div class="nav-tabs-navigation verical-navs">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs flex-column nav-stacked" role="tablist">
+                    @{
+                        foreach (var item in Model.GroupBy(var => var.Department))
+                        {
+                            <li class="nav-item" )>
+                                <a class="nav-link active" href="#@item.Key" role="tab" data-toggle="tab">@item.Key</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    <div class="col-lg-8 col-md-7 col-sm-8 col-6">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            @{
+                foreach (var item in Model.GroupBy(var => var.Department))
+                {
+                    <div class="tab-pane active" id="@item.Key">
+                        @Html.Partial("Partial/HorizontalType", item)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
