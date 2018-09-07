@@ -59,21 +59,9 @@ namespace WebPortal.Areas.CrmForms.Controllers
             return View(leadViewModels);
         }
 
-        [HttpGet]
-        public IActionResult InviteAddForm()
-        {
-            ViewData["Programs"] = progs;
-
-            ViewData["Controller"] = this.ControllerContext.RouteData.Values["controller"].ToString();
-            ViewData["Action"] = this.ControllerContext.RouteData.Values["action"].ToString();
-
-            var leadViewModels = new LeadViewModel();
-
-            return View(leadViewModels);
-        }
 
         [HttpPost]
-        public IActionResult InviteAddForm(LeadViewModel model)
+        public async Task<IActionResult> InviteForm(LeadViewModel model)
         {
             var modelDTo = new UpdateFormDTO
             {
@@ -92,17 +80,32 @@ namespace WebPortal.Areas.CrmForms.Controllers
                 WhereKnown = model.WhereKnown
             };
 
-            var result = logic.AddFromForm(modelDTo);
+            var result = await logic.UpdateFromForm(modelDTo);
 
-            if (result.Result) return Ok();
+            if (result) return Ok();
 
             return BadRequest();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> InviteForm(LeadViewModel model)
+
+        [HttpGet]
+        public IActionResult InviteAddForm()
         {
-            var modelDTo = new UpdateFormDTO {
+            ViewData["Programs"] = progs;
+
+            ViewData["Controller"] = this.ControllerContext.RouteData.Values["controller"].ToString();
+            ViewData["Action"] = this.ControllerContext.RouteData.Values["action"].ToString();
+
+            var leadViewModels = new LeadViewModel();
+
+            return View(leadViewModels);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InviteAddForm(LeadViewModel model)
+        {
+            var modelDTo = new UpdateFormDTO
+            {
                 Birthday = model.Birthday,
                 City = model.City,
                 ContactId = model.ContactId,
@@ -118,9 +121,12 @@ namespace WebPortal.Areas.CrmForms.Controllers
                 WhereKnown = model.WhereKnown
             };
 
-            await logic.UpdateForm(modelDTo);
+            var result = await logic.AddFromForm(modelDTo);
 
-            return Ok();
+            if (result) return Ok();
+
+            return BadRequest();
         }
+
     }
 }

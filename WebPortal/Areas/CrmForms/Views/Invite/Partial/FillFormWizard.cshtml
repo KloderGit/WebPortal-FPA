@@ -209,13 +209,12 @@
     });
 
     $('#fill_student').on('submit', function (event) {
-        event.preventDefault(); // or return false, your choice
+        event.preventDefault(); 
         $.ajax({
             url: $(this).attr('action'),
             type: 'post',
             data: $(this).serialize(),
             success: function (data, textStatus, jqXHR) {
-                // if success, HTML response is expected, so replace current
                 if (textStatus === 'success') {
                     console.log('form submitted.');
                     //demo.showSwal('success-message');

@@ -40,5 +40,11 @@ namespace WebPortal.Areas.Common.Controllers
             return View(programs.Adapt<IEnumerable<ProgramsViewModel>>(mapper));
         }
 
+        public IActionResult UpdatePrograms()
+        {
+            var programs = logic.UpdateDataBasePrograms();
+
+            return RedirectToAction("Programs");
+        }
     }
 }
