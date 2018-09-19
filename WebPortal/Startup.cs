@@ -31,7 +31,7 @@ namespace WebPortal
 
             services.AddScoped<BusinessLogic>();
 
-            services.AddScoped<TypeAdapterConfig>( mapper => {
+            services.AddScoped( mapper => {
                 var map = new TypeAdapterConfig();
                 var reg = new RegMapster(map);
                 return map;
