@@ -31,18 +31,20 @@ namespace WebPortal.Areas.CrmForms.Controllers
             { 489755, "Инструктор групповых программ" },
         };
 
+        // Список сделок на статусе - Пришел в офис
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var leads = await logic.GetPreparedLeads();
 
-            var leadsViewModels = leads?.Select( it => new LeadViewModel { LeadId = it.LeadId, ContactId = it.ContactId, Name = it.Name, Phone = it.Phone, Email = it.Email  } );
+            var wizardViewModels = leads?.Adapt<IEnumerable<WizardViewModel>>(mapper);
 
-            return View(leadsViewModels);
+            return View(wizardViewModels);
         }
 
+        // Выбраная сделка
         [HttpGet]
-        public async Task<IActionResult> InviteForm(int id)
+        public async Task<IActionResult> UpdateLeadAndContactFromWizard(int id)
         {
             ViewData["Programs"] = progs;
 
@@ -51,73 +53,26 @@ namespace WebPortal.Areas.CrmForms.Controllers
 
             var it = await logic.GetLeadById(id);
 
-            var leadViewModels = new LeadViewModel { LeadId = it.LeadId, ContactId = it.ContactId, Name = it.Name, Phone = it.Phone, Email = it.Email };
+            var wizardViewModels = it.Adapt<WizardViewModel>(mapper);
 
-            return View(leadViewModels);
+            return View(wizardViewModels);
         }
 
-        [HttpGet]
-        public IActionResult InviteAddForm()
-        {
-            ViewData["Programs"] = progs;
-
-            ViewData["Controller"] = this.ControllerContext.RouteData.Values["controller"].ToString();
-            ViewData["Action"] = this.ControllerContext.RouteData.Values["action"].ToString();
-
-            var leadViewModels = new LeadViewModel();
-
-            return View(leadViewModels);
-        }
-
+        // Отправка выбраной сделки
         [HttpPost]
-        public IActionResult InviteAddForm(LeadViewModel model)
+        public async Task<IActionResult> UpdateLeadAndContactFromWizard(WizardViewModel model)
         {
-            var modelDTo = new UpdateFormDTO
+            var modelDTo = model.Adapt<WizardDTO>(mapper);
+
+            try
             {
-                Birthday = model.Birthday,
-                City = model.City,
-                ContactId = model.ContactId,
-                Education = model.Education,
-                Email = model.Email,
-                Expirience = model.Expirience,
-                LeadId = model.LeadId,
-                Name = model.Name,
-                Phone = model.Phone,
-                Program = model.Program,
-                ProgramPart = model.ProgramPart,
-                Subway = model.Subway,
-                WhereKnown = model.WhereKnown
-            };
-
-            var result = logic.AddFromForm(modelDTo);
-
-            if (result.Result) return Ok();
-
-            return BadRequest();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> InviteForm(LeadViewModel model)
-        {
-            var modelDTo = new UpdateFormDTO {
-                Birthday = model.Birthday,
-                City = model.City,
-                ContactId = model.ContactId,
-                Education = model.Education,
-                Email = model.Email,
-                Expirience = model.Expirience,
-                LeadId = model.LeadId,
-                Name = model.Name,
-                Phone = model.Phone,
-                Program = model.Program,
-                ProgramPart = model.ProgramPart,
-                Subway = model.Subway,
-                WhereKnown = model.WhereKnown
-            };
-
-            await logic.UpdateForm(modelDTo);
-
-            return Ok();
+                await logic.UpdateLeadAndContact(modelDTo);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }

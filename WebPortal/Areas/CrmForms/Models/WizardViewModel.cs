@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebPortal.Areas.CrmForms.Models
 {
-    public class LeadViewModel
+    public class WizardViewModel
     {
         public int LeadId { get; set; }
         public int ContactId { get; set; }

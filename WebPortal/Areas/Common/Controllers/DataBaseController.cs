@@ -25,19 +25,12 @@ namespace WebPortal.Areas.Common.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var aaa = new ProgramDTO() { Title = "asdadasd", Form = "OOO", Department = "SSS" };
-            var ttt = aaa.Adapt<ProgramsViewModel>(mapper);
+            //var aaa = new ProgramDTO() { Title = "asdadasd", Form = "OOO", Department = "SSS" };
+            //var ttt = aaa.Adapt<ProgramsViewModel>(mapper);
 
-            var ttttt = logic.GetDataBasePrograms().Adapt<IEnumerable<ProgramsViewModel>>(mapper);
+            //var ttttt = logic.GetDataBasePrograms().Adapt<IEnumerable<ProgramsViewModel>>(mapper);
 
             return View();
-        }
-
-        public ActionResult Programs()
-        {
-            var programs = logic.GetDataBasePrograms();
-
-            return View(programs.Adapt<IEnumerable<ProgramsViewModel>>(mapper));
         }
 
     }

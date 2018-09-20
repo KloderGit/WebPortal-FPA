@@ -1,5 +1,5 @@
 ﻿@using WebPortal.Areas.CrmForms.Models
-@model LeadViewModel
+@model WizardViewModel
 
 <div class="card card-stats">
     <div class="card-body ">
@@ -22,7 +22,7 @@
         <div class="stats">
             <form>
                 <input name="id" value="@Model.LeadId" hidden />
-                <button asp-action="InviteForm" asp-controller="Invite" type="submit" class="btn btn-primary btn-fill btn-wd">Заполнить форму</button>
+                <button asp-action="UpdateLeadAndContactFromWizard" asp-controller="Invite" type="submit" class="btn btn-primary btn-fill btn-wd">Заполнить форму</button>
             </form>
         </div>
     </div>

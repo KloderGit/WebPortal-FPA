@@ -52,28 +52,28 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="ФИО" name="Name" value="@Model.Name" />
+                                    <input type="text" class="form-control required" placeholder="ФИО" name="Name" value="@Model.Name" />
                                 </div>
                                 <label>Дата рождения</label>
                                 <div class="input-group col-sm-6 col-xs-12">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="nc-icon nc-calendar-60"></i></span>
                                     </div>
-                                    <input type="date" class="form-control" placeholder="" name="Birthday">
+                                    <input type="date" class="form-control required" placeholder="" name="Birthday">
                                 </div>
                                 <label>Телефон</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                                     </div>
-                                    <input type="text" placeholder="Телефон" class="form-control" name="Phone" value="@Model.Phone" />
+                                    <input type="text" placeholder="Телефон" class="form-control required" name="Phone" value="@Model.Phone" />
                                 </div>
                                 <label>Email</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
                                     </div>
-                                    <input type="email" placeholder="Email" class="form-control" name="Email" value="@Model.Email" />
+                                    <input type="email" placeholder="Email" class="form-control required" name="Email" value="@Model.Email" />
                                 </div>
                             </div>
                         </div>
@@ -136,9 +136,9 @@
                             </div>
 
                             <div class="col-sm-10">
-                                <select name="Program" title="Single Select" class="form-control">
+                                <select name="Program" title="Single Select" class="form-control validate[required]">
                                     @{
-                                        <option value="0">Не выбрано</option>
+                                        <option value="">Не выбрано</option>
                                         foreach (var opt in (ViewData["Programs"] as IEnumerable<KeyValuePair<int, string>>))
                                         {
                                             <option value="@opt.Key"> @opt.Value </option>

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\CrmForms\Views\Invite\InviteForm.cshtml" />
+    <None Include="Areas\CrmForms\Views\Invite\UpdateLeadAndContactFromWizard.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
