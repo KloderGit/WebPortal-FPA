@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebPortal.Areas.Common.Models;
-using WebPortal.Areas.CrmForms.Models;
+using WebPortal.Areas.Crm.Models;
 using WebPortalBuisenessLogic.Models.Crm;
 using WebPortalBuisenessLogic.Models.DataBase;
 

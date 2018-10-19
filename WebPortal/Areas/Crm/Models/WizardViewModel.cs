@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebPortal.Areas.CrmForms.Models
+namespace WebPortal.Areas.Crm.Models
 {
     public class WizardViewModel
     {

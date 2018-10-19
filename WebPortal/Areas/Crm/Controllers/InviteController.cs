@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using WebPortal.Areas.CrmForms.Models;
+using WebPortal.Areas.Crm.Models;
 using WebPortalBuisenessLogic;
 using WebPortalBuisenessLogic.Models.Crm;
 
-namespace WebPortal.Areas.CrmForms.Controllers
+namespace WebPortal.Areas.Crm.Controllers
 {
-    [Area("CrmForms")]
+    [Area("Crm")]
     public class InviteController : Controller
     {
         ILogger logger;

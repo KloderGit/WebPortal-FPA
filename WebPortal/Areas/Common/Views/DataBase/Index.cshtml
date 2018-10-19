@@ -1,7 +1,43 @@
-﻿
+﻿@using WebPortal.Areas.Common.Models
+@model IEnumerable<ProgramsViewModel>
 
-@Html.Partial("Partial/NavBarDataBase")
+@Html.Partial( "Partial/NavBarDataBase" )
 
 
 <h3>KJHKJHAdKLHJALDShLSADJhd</h3>
 
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-pricing card-plain">
+            <div class="card-header">
+                <h6 class="card-category"> Bravo Pack</h6>
+            </div>
+            <div class="card-body">
+                <div class="card-icon icon-warning ">
+                    <i class="nc-icon nc-shop"></i>
+                </div>
+
+                <h3 class="card-title">10$</h3>
+
+                <ul>
+                    <li>61 - Очных программ</li>
+                    <li>12 - Дистанционных программ</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <a asp-area="Common" asp-controller="DataBase" asp-action="ProgramsUpdate" class="btn btn-round btn-neutral btn-warning">Обновить</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Содержимое базы данных</h5>
+            </div>
+            <div class="card-body">
+                @Html.Partial( "Partial/HorizontalType", Model )
+            </div>
+        </div>
+    </div>
+</div>

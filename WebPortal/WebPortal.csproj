@@ -6,11 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mapster" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
-    <PackageReference Include="Serilog" Version="2.7.1" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,11 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\CrmForms\Views\Invite\UpdateLeadAndContactFromWizard.cshtml" />
+    <None Include="Areas\Crm\Views\Invite\UpdateLeadAndContactFromWizard.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
     <Folder Include="Views\Shared\CommonParts\" />
   </ItemGroup>
 
